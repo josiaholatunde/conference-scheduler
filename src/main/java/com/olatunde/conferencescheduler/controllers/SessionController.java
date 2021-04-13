@@ -1,5 +1,6 @@
 package com.olatunde.conferencescheduler.controllers;
 
+import com.olatunde.conferencescheduler.annotations.WrapResponse;
 import com.olatunde.conferencescheduler.dtos.SessionDto;
 import com.olatunde.conferencescheduler.services.SessionService;
 import com.olatunde.conferencescheduler.utils.Constants;
@@ -12,6 +13,7 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
+@WrapResponse
 @RestController
 @RequestMapping(value = Constants.API_VERSION_1+"/sessions",
 produces = {MediaType.APPLICATION_JSON_VALUE})
