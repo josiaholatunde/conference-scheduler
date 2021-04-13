@@ -15,6 +15,8 @@ public class Session {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String code;
+
     @Column(name = "name", nullable = false)
     private String name;
 
