@@ -2,8 +2,11 @@ package com.olatunde.conferencescheduler.models;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import java.time.LocalDateTime;
 import java.util.List;
 
 @Entity(name = "sessions")
@@ -26,5 +29,13 @@ public class Session {
 
     @ManyToMany(mappedBy = "sessions")
     private List<Speaker> speaker;
+
+    @CreatedDate
+    @Column(name = "created_at")
+    private LocalDateTime createdAt;
+
+    @LastModifiedDate
+    @Column(name = "updated_at")
+    private LocalDateTime updatedAt;
 
 }
