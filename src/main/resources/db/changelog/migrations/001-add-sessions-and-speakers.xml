@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+                   xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+                   xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+
+    <changeSet id="1618406057131" author="oogunboyejo">
+        <createTable tableName="sessions">
+            <column name="id" autoIncrement="true" type="BIGINT">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="name" type="varchar(200)">
+                <constraints nullable="false" />
+            </column>
+            <column name="code" type="varchar(200)" />
+            <column name="description" type="TEXT" />
+            <column name="length" type="int" />
+
+            <column name="created_at" type="datetime"/>
+            <column name="updated_at" type="datetime"/>
+        </createTable>
+
+        <createTable tableName="speakers">
+            <column name="id" autoIncrement="true" type="BIGINT">
+                <constraints primaryKey="true" />
+            </column>
+            <column name="first_name" type="varchar(2000)">
+                <constraints nullable="false" />
+            </column>
+            <column name="last_name" type="varchar(2000)" />
+            <column name="code" type="varchar(200)" />
+            <column name="title" type="varchar(200)" />
+            <column name="company" type="varchar(200)" />
+            <column name="speaker_bio" type="TEXT" />
+            <column name="created_at" type="datetime"/>
+            <column name="updated_at" type="datetime"/>
+        </createTable>
+
+        <createTable tableName="session_speakers">
+            <column name="speaker_id" type="BIGINT">
+                <constraints foreignKeyName="FK_session_speakers_speaker_id" references="speakers(id)" nullable="false" />
+            </column>
+            <column name="session_id" type="BIGINT">
+                <constraints foreignKeyName="FK_session_speakers_session_id" references="sessions(id)" nullable="false" />
+            </column>
+        </createTable>
+    </changeSet>
+
+</databaseChangeLog>
