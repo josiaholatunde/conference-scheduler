@@ -37,7 +37,7 @@ public class SessionController {
     }
 
     @DeleteMapping("{code}")
-    public void createSession(@PathVariable String code) {
+    public void deleteSession(@PathVariable String code) {
         sessionService.deleteByCode(code);
     }
 
