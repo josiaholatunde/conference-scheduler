@@ -1,3 +1,5 @@
 databaseChangeLog:
   - include:
-      file:  db/changelog/migrations/add-sessions-and-speakers.xml
+      file:  db/changelog/migrations/001-add-sessions-and-speakers.xml
+  - include:
+      file: db/changelog/migrations/002-add-photos-table.xml

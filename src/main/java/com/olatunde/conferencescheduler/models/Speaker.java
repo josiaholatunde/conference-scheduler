@@ -2,8 +2,11 @@ package com.olatunde.conferencescheduler.models;
 
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import org.springframework.data.annotation.CreatedDate;
+import org.springframework.data.annotation.LastModifiedDate;
 
 import javax.persistence.*;
+import java.sql.Timestamp;
 import java.util.List;
 
 @Entity(name = "speakers")
@@ -35,6 +38,14 @@ public class Speaker {
     @JoinTable(name = "session_speakers",
             joinColumns = @JoinColumn(name = "speaker_id"),
     inverseJoinColumns = @JoinColumn(name = "session_id"))
-    private List<Session> session;
+    private List<Session> sessions;
+
+    @CreatedDate
+    @Column(name = "created_at")
+    private Timestamp createdAt;
+
+    @LastModifiedDate
+    @Column(name = "updated_at")
+    private Timestamp updatedAt;
 
 }

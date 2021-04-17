@@ -23,6 +23,9 @@ public class RepositoryConfig {
     @Value("${datasource.password}")
     private String dataSourcePassword;
 
+    @Value("${migrations.liquibase.change-log}")
+    private String liquibaseChangeLog;
+
     @Bean
     public DataSource dataSource() {
         DataSourceBuilder dataSourceBuilder = DataSourceBuilder.create();
@@ -36,7 +39,7 @@ public class RepositoryConfig {
     public SpringLiquibase liquibase() {
         SpringLiquibase springLiquibase = new SpringLiquibase();
         springLiquibase.setDataSource(dataSource());
-        springLiquibase.setChangeLog("classpath:liquibase-changeLog.xml");
+        springLiquibase.setChangeLog(liquibaseChangeLog);
         springLiquibase.setShouldRun(true);
         return springLiquibase;
     }
