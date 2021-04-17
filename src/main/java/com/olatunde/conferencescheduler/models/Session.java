@@ -1,5 +1,6 @@
 package com.olatunde.conferencescheduler.models;
 
+import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -13,6 +14,7 @@ import java.util.List;
 @Entity(name = "sessions")
 @NoArgsConstructor
 @Data
+@Builder
 public class Session {
 
     @Id

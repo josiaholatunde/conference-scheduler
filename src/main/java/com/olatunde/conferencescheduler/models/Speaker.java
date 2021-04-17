@@ -18,6 +18,8 @@ public class Speaker {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
+    private String code;
+
     @Column(name = "first_name", nullable = false)
     private String firstName;
 

@@ -10,14 +10,20 @@ import lombok.NoArgsConstructor;
 @NoArgsConstructor
 @AllArgsConstructor
 @Data
-public class SessionDto {
+public class SpeakerDto {
 
     private String code;
 
-    private String name;
+    private String firstName;
 
-    private String description;
+    private String lastName;
 
-    private Long length;
+    private String company;
+
+    private String speakerBio;
+
+    private String createdAt;
+
+    private String updatedAt;
 
 }
