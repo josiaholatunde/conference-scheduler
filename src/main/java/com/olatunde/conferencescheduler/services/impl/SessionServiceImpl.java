@@ -36,7 +36,7 @@ public class SessionServiceImpl implements SessionService {
 
     private Session findSessionByCode(String code) {
         return sessionRepository.findByCode(code).orElseThrow(() ->
-                new ResourceNotFoundException(String.format("Session with code %s} was not found", code)));
+                new ResourceNotFoundException(String.format("Session with code %s was not found", code)));
     }
 
     public boolean existsByCode(String code) {
@@ -86,7 +86,7 @@ public class SessionServiceImpl implements SessionService {
 
     private String generateCode() throws Exception {
         int noOfGeneratedAttempts = 0;
-        while (noOfGeneratedAttempts >= MAX_NO_GENERATION_ATTEMPTS) {
+        while (noOfGeneratedAttempts <= MAX_NO_GENERATION_ATTEMPTS) {
             String generatedCode = UUID.randomUUID().toString();
             if (!existsByCode(generatedCode)) {
                 return generatedCode;
@@ -104,7 +104,7 @@ public class SessionServiceImpl implements SessionService {
 
     private Session convertDataToEntity(SessionDto sessionDto) {
         Session session = Session.builder().build();
-        BeanUtils.copyProperties(session, sessionDto);
+        BeanUtils.copyProperties(sessionDto, session);
         return session;
     }
 }
