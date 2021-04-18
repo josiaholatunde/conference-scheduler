@@ -1,5 +1,6 @@
 package com.olatunde.conferencescheduler.advice;
 
+import com.olatunde.conferencescheduler.exceptions.BadRequestException;
 import com.olatunde.conferencescheduler.exceptions.ResourceNotFoundException;
 import com.olatunde.conferencescheduler.response.ConferenceSchedulerResponse;
 import com.olatunde.conferencescheduler.utils.ResponseServiceUtil;
@@ -24,5 +25,12 @@ public class GlobalControllerAdvice {
     public ConferenceSchedulerResponse buildNotFoundResponse(ResourceNotFoundException ex, HttpServletRequest request) {
         log.error("Resource not found exception {}", ex.getMessage());
         return  responseServiceUtil.buildErrorResponse(ex.getMessage());
+    }
+
+    @ExceptionHandler(BadRequestException.class)
+    @ResponseStatus(value= HttpStatus.BAD_REQUEST)
+    public ConferenceSchedulerResponse buildBadRequestResponse(BadRequestException ex, HttpServletRequest request) {
+        log.error("Bad request exception {}", ex.getMessage());
+        return responseServiceUtil.buildErrorResponse(ex.getMessage());
     }
 }

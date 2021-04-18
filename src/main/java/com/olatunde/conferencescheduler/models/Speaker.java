@@ -1,5 +1,7 @@
 package com.olatunde.conferencescheduler.models;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 import org.springframework.data.annotation.CreatedDate;
@@ -12,11 +14,14 @@ import java.util.List;
 @Entity(name = "speakers")
 @NoArgsConstructor
 @Data
+@JsonIgnoreProperties({"hibernateLazyInitializer","handler"})
 public class Speaker {
 
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+
+    private String code;
 
     @Column(name = "first_name", nullable = false)
     private String firstName;
@@ -34,10 +39,8 @@ public class Speaker {
     @OneToMany(mappedBy = "speaker")
     private List<Photo> photos;
 
-    @ManyToMany
-    @JoinTable(name = "session_speakers",
-            joinColumns = @JoinColumn(name = "speaker_id"),
-    inverseJoinColumns = @JoinColumn(name = "session_id"))
+    @ManyToMany(mappedBy = "speakers")
+    @JsonIgnore
     private List<Session> sessions;
 
     @CreatedDate

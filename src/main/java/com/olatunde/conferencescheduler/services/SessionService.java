@@ -8,4 +8,10 @@ public interface SessionService {
     List<SessionDto> retrieveSessions();
 
     SessionDto findByCode(String code);
+
+    SessionDto createSession(SessionDto sessionDto) throws Exception;
+
+    void deleteByCode(String code);
+
+    SessionDto updateSession(String code, SessionDto sessionDto);
 }
